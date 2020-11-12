@@ -1,0 +1,63 @@
+<html>
+<body>
+<p>You are to write a computer program that will find the total weight of 3 parcels.<br>
+The program will ask the user to enter a weight for each parcel and add them together to get the total.<br>
+This total will then be displayed on the screen with a suitable message.</p>
+<style>
+.* td {
+border:solid 1px black;
+padding:10px;
+}
+</style>
+<script type="text/javascript">
+function drawInputs() {
+	var nr = parseInt(document.getElementById("nr").value);
+	
+	str = '<table>';
+	
+	for (i = 0;   i < nr; i++) {
+		//str += '<br>'+i;
+		str += '<tr><td>Weight of parcel #'+(i+1)+'</td><td><input name="parcel" value="1"></input></td><td><p id="err'+i+'"></p></td></tr>';
+	}
+	
+	str += '<tr><td colspan="2"><button onClick="countWeight()">Count</button></td></tr></table>';	
+	str += '<p id="jsOutput2"></p>';	
+	document.getElementById("jsOutput").innerHTML = str;	
+}
+function countWeight(){
+	//counts and addresses every element with id of w{i}
+	//adds and averages values
+	var total = 0;
+	str = '';
+	
+	allPre = document.getElementsByName("parcel");
+	all = Array.from(allPre);
+	for(n = 0; n < all.length; n++ ){
+		if (!isNaN(all[n].value)) {
+			total += parseInt(all[n].value, 10);
+			document.getElementById("err"+n).innerHTML = '';
+		} else {
+			all.splice(n, 1);
+			//all[i].parentNode.removeChild(all[i]);
+			document.getElementById("err"+n).innerHTML = 'Please input number';
+		}
+		//document.write("<br>" +all[n]);
+		//str += 'all.n.value: '+all[n].value+'<br>';
+	}
+	//str += 'typeof all: '+typeof all;
+	str += 'Total weight of '+all.length+' parcels is '+total+'<br>';
+	str += 'On average, each of those parcels weight '+parseFloat(total/all.length).toFixed(2)+'<br>';
+	//str += 'total: '+total;
+	document.getElementById("jsOutput2").innerHTML = str;
+}
+</script>
+	<table>
+		<tr>
+			<td>How many parcels?</td>
+			<td><input id="nr" value="3"></input></td>
+		</tr>
+		<tr><td colspan="4"><button onClick="drawInputs()">Prepare</button></td></tr>
+	</table>
+	<p id="jsOutput"></p>
+</body>
+</html>

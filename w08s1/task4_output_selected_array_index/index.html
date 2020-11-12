@@ -1,0 +1,49 @@
+<html>
+<body><pre>•Set up an array containing a list of first names of all the members in the class but not in alphabetic order
+
+•Enquire the member number in a box on the form  i.e. their position on the list remembering that an array also runs from element 0 (just like the loop counter) and return the corresponding name on the list (This is artificial and very unlikely…)
+
+•Amend your program to check for the number of names on the list and alert the user if s/he requests a number greater than the number on the list
+
+•Check also for a negative value being specified (there’s always one wag in the group)</pre>
+<style>
+p {
+	margin:5px;
+	padding:10px;
+	display:block;
+	border:solid 1px black;
+}
+</style>
+<!-- Real document starts here -->
+Please select number of classmate you want to see<br>
+<input type="text" id="nr" name="nr" value="1">
+<button onClick="updateThis(nr.value)">Select</button>
+<p id="jsOutput2">Selected: none</p><br>
+<script type="text/javascript">
+	var classmates = ["Stephen", "Nathan", "Lili", "Dylan", "Daniel", "Brodie", "Andrew", "Andie", "Piotr", "Drew", "Bianca"];
+
+	function updateThis(val) {
+		//console.log('im here');
+		var err = '';
+		if (isNaN(val)) {
+			err += 'Please input number.';
+		} else {
+			if (val > classmates.length) {
+				err += 'Chosen number is too big, please input number between 1 and '+classmates.length;
+			} else if (val <= 0) {
+				err += 'Chosen number is too small, please input number between 1 and '+classmates.length;
+			}
+		}
+		
+		if (err == '') {
+			document.getElementById("jsOutput2").innerHTML = "Selected:<br>Inputted number: "+val+", Array index: "+(val-1)+", name: <b>"+classmates[val-1]+"</b>.";
+		} else {
+			document.getElementById("jsOutput2").innerHTML = err;
+		}
+	}
+	//initialization
+	updateThis(1);
+
+</script>
+</body>
+</html>

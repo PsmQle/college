@@ -1,0 +1,75 @@
+<html>
+<body>
+<p><pre>Create a program that prompts the user to enter a mark between 0 - 100.
+
+The following messages should be displayed depending on what has been entered:
+0-50 "Fail"
+51 - 100 "Pass"
+
+Modify the student marks program to include the condition that if a student scores 75 or
+more they will be awarded a merit pass.
+
+Modify the program again so that two marks are entered instead of one. The two marks are
+then added together and divided by 2. The pass marks remain unchanged. Test your
+program again.</pre></p>
+<style>
+
+</style>
+<script type="text/javascript">
+function drawInputs() { //prepares 2nd form, draws as many inputs for grades as specified in 1st form
+	var nr = parseInt(document.getElementById("nr").value);
+	str = '<table>'; //2nd form starts here
+	for (i = 0;   i < nr; i++) { // as many times as it read from input of 1st form
+		str += '<tr><td>Mark #'+(i+1)+'</td><td><input name="mark" value="51"></input></td><td><p id="err'+i+'"></p></td></tr>';
+	}
+	
+	str += '<tr><td colspan="2"><button onClick="countMarks()">Count</button></td></tr></table>';	//button for starting to process 2nd form
+	str += '<p id="jsOutput2"></p>';	//output for outcome of 2nd form
+	document.getElementById("jsOutput").innerHTML = str;
+}
+function countMarks(){ //takes data from 2nd form then computes it
+	var total = 0;
+	str = '';
+	
+	allPre = document.getElementsByName("mark"); //takes values of all generated inputs
+	all = Array.from(allPre); //changes result type to array, allowing me to use array functions
+	for(n = 0; n < all.length; n++ ){ //for every item in result array do:
+		if (!isNaN(all[n].value)) { //if value of input is a number
+			if (all[n].value>100) { //if value of input is a number higher than 100
+				all.splice(n, 1);
+				document.getElementById("err"+n).innerHTML = 'Please input a number smaller than 100';
+			} else if(all[n].value<0) { //if value of input is a negative number
+				all.splice(n, 1);
+				document.getElementById("err"+n).innerHTML = 'Please input a positive number';
+			} else { //its between 0 and 100
+				total += parseInt(all[n].value, 10);
+				document.getElementById("err"+n).innerHTML = '';			
+			}
+		} else { //not a number and outside 0-100, remove from results
+			all.splice(n, 1);
+			document.getElementById("err"+n).innerHTML = 'Please input a number';
+		}
+	}
+	avMark = parseFloat(total/all.length).toFixed(2); //whats average score
+	str += 'Total: '+total+'<br>';
+	str += 'Your average grade from '+all.length+' marks is '+avMark+'<br>';
+	if (avMark <51) { //displaying different strings depending on average value
+		str+='Your grade of '+avMark+' is not a passing grade. You <b>failed</b>.';
+	} else if(avMark <75) {
+		str+='Your grade of '+avMark+' is a passing grade. You <b>passed</b>.';
+	} else {
+		str+='Your grade of '+avMark+' is a passing grade. You <b>passed with Merit Pass</b>.';
+	}
+	document.getElementById("jsOutput2").innerHTML = str;//displaying choosen string back in document
+}
+</script><!-- Real document starts here -->
+	<table> <!-- 1st form, asks for how many inputs are needed in next form -->
+		<tr>
+			<td>How many marks?</td>
+			<td><input id="nr" value="2"></input></td>
+		</tr>
+		<tr><td colspan="4"><button onClick="drawInputs()">Prepare</button></td></tr><!-- button for starting function drawInputs() -->
+	</table>
+	<p id="jsOutput"></p><!-- placeholder for outcome from 1st form -->
+</body>
+</html>

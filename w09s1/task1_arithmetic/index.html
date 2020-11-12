@@ -1,0 +1,152 @@
+<!-- Input validation excercise, made by student nr 20005308, v2 updated 5/11 -->
+<html>
+<body><pre>Arithmetic practice
+Task
+Get two integers from the user,   and then (for those two integers), display their:
+
+  sum
+  difference
+  product
+  integer quotient
+  remainder
+Create a menu structure to prompt user for type of calculation they wish to choose.
+
+Apply input validation to the user inputs.</pre>
+<style>
+* {
+	margin:0;
+	padding:0;
+}
+table {
+	margin:20px;
+	border-spacing:5px;
+}
+td {
+	padding:15px;
+	border:solid 1px black;
+	border-radius:5px;
+}
+label {
+	margin:10px;
+}
+.label {
+	background-color:green;
+	font-weight:bold;
+	text-align:center;
+}
+.tlr {
+	text-align:right;
+}
+.tlc {
+	text-align:center;
+}
+</style>
+<!-- Real document starts here -->
+<table><form name="form">
+	<tr><td class="tlr">First Number:</td><td><input class="tlc" type="text" id="number_f" value="1"></td><td style="border:none;" id="err1"></td></tr>
+	<tr><td class="tlr">Second Number:</td><td><input class="tlc" type="text" id="number_s" value="2"></td><td style="border:none;" id="err2"></td></tr>
+	<tr>
+		<td class="label" rowspan=5>To start, please choose<br>aritmethics mode:</td>
+		<td><input type="radio" id="sum" name="mode" value="sum"><label for="sum">Sum</label></td>
+	</tr>
+	<tr><td><input type="radio" id="difference" name="mode" value="difference"><label for="difference">Difference</label></td></tr>
+	<tr><td><input type="radio" id="product" name="mode" value="product"><label for="product">Product</label></td></tr>
+	<tr><td><input type="radio" id="quotient" name="mode" value="quotient"><label for="quotient">Integer Quotient</label></td></tr>
+	<tr><td><input type="radio" id="remainder" name="mode" value="remainder"><label for="remainder">Remainder</label></td></tr>
+</form><table>
+<div id="jsOutput"></div>
+
+<script type="text/javascript">
+	var rad = document.form.mode;
+	for (var i = 0; i < rad.length; i++) {
+		rad[i].addEventListener('change', updateThis);
+	}
+
+	function validate(input, zero = false) {
+		estr = '';
+			if (isNaN(input)) { //if input is not a number
+				estr+='Value should be a number.<br>';
+			} else {
+				if (false) { //negative inputs should be supported lol
+				//if (input <= 0) { //if input is negative
+					estr+='Value should be positive';
+				}
+				if (zero == true) { //function have been called with 'dont-let-number-be-zero mode'
+					if (input == 0) {
+						estr+='You cannot divide by 0!';
+					}
+				}
+			}		
+		return estr;
+	}
+
+	function updateThis() {
+		//reset outputs from previous iteration
+		document.getElementById("jsOutput").innerHTML = '';
+		document.getElementById("err1").innerHTML = '';
+		document.getElementById("err2").innerHTML = '';
+		
+		//validating strings, sending error messages if neccesary
+		var a = document.getElementById("number_f").value;
+		var b = document.getElementById("number_s").value;
+		var err1 = validate(a);
+		var err2 = validate(b);	
+		
+		//outputting errors
+		if (err1 != '') {
+			document.getElementById("err1").innerHTML = '<td>'+err1+'</td>';
+		} else if (err2 != '') {
+			document.getElementById("err2").innerHTML = '<td>'+err2+'</td>';
+		}
+		
+		
+		if (err1 == '' && err2 == '') {//if inputs are ok
+		str = '<table>';
+			switch(this.value){
+				case 'sum':
+					str += '<tr><td>The sum of those numbers is:</td><td>'+a+' + '+b+' = <b>'+(parseInt(a)+parseInt(b))+'</b></td></tr>';
+					break;
+				case 'difference':
+					var diff = parseInt(a)-parseInt(b);
+					str += '<tr><td class="tlr">The difference between those numbers is:</td><td class="tlc">'+a+' - '+b+' = <b>'+diff+'</b></td></tr>';
+					if (diff < 0) {
+						str+='<tr><td>The difference between those numbers is negative</td><td>The absolute value of difference is <b>'+(diff*-1)+'</b></td></tr>';
+					}
+					break;
+				case 'product':
+					str += '<tr><td>The product of those numbers is:</td><td>'+a+' * '+b+' = <b>'+(parseInt(a)*parseInt(b))+'</b></td></tr>';
+					break;
+				case 'quotient':
+					//extra validation to check for dividing by 0
+					var err2 = validate(b, true);
+					if (err2 != '') {
+						document.getElementById("err2").innerHTML = '<td>'+err2+'</td>';
+						break;
+					}
+					str += '<tr><td>The quotient of those numbers is:</td><td>'+a+' / '+b+' = <b>'+(parseInt(a)/parseInt(b))+'</b></td></tr>';
+					break;
+				case 'remainder':
+					//extra validation to check for dividing by 0
+					var err2 = validate(b, true);
+					if (err2 != '') {
+						document.getElementById("err2").innerHTML = '<td>'+err2+'</td>';
+						break;
+					}
+					var rem = parseInt(a)%parseInt(b);
+					if (rem==0) { //if there is no remainder
+						str += '<tr><td>The quotient of those numbers is:</td><td>'+a+' / '+b+' = '+(parseInt(a)/parseInt(b))+'</td></tr>';
+						str += '<tr><td colspan=2 class="tlc">This equation <b>does not have</b> remainder.</td></tr>';
+					} else { //if there is some
+						str += '<tr><td>The quotient of those numbers is:</td><td>'+a+' / '+b+' = '+Math.floor(parseInt(a)/parseInt(b))+', <b>r '+rem+'</b></td></tr>';
+					}					break;
+				default:
+					str += 'Error';
+					break;
+			}
+			str+='</table>';
+			document.getElementById("jsOutput").innerHTML = str;
+		}
+	}
+</script>
+</body>
+</html>

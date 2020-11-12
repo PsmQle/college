@@ -1,0 +1,70 @@
+<doctype html>
+<!-- Created on 1/10/20 by student nr 20005308, empty template version 2 updated on 01/10 -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Place for me to exercise what I have learned.">
+        <meta name="keywords" content="learn, allAboutMe">
+        <title>Website by 20005308</title>
+        <link rel="stylesheet" style="text/css" href="../css/main.css"/>
+    </head>
+    <body>
+        <div id="container">
+            
+            <!-- header -->
+            <h1>Week 6 Session 1 Task 2</h1>
+            <div class="stylizedHr"></div>
+			<p>Tax calculator working on table</p>
+            <div class="stylizedHr"></div>
+
+            <!-- JS output -->
+			<table>
+				<tr>
+					<td>Hourly wage</td>
+					<td><input id="hourlyWage" value="15"></input></td>
+					<td>Hours</td>
+					<td><input id="hoursTotal" value="37.5"></input></td>
+				</tr>
+				<tr>
+					<td>OT rate</td>
+					<td><input id="OTRate" value="1.5"></input></td>
+					<td>OT hours</td>
+					<td><input id="OTHours" value="0"></input></td>
+				</tr>
+				<tr>
+					<td>OT hourly</td>
+					<td><input id="OTHourly" class="right" value="" disabled></input></td>
+					<td>Gross pay</td>
+					<td><input id="grossPay" class="right" value="" disabled></input></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td>Tax rate</td>
+					<td><input id="taxRate" value="0.25"></input></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td>Total taxes</td>
+					<td><input id="totalTax" class="right" value="" disabled></input></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td>Other deductions</td>
+					<td><input id="otherDed" value="0"></input></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+					<td>Your Paycheck</td>
+					<td><input id="paycheck" class="right" value="" disabled></input></td>
+				</tr>
+				<tr><td colspan="4"><button onClick="updateTable()">Calculate</button></td></tr>
+			</table>
+			<p id="jsOutput"></p>
+			<script src="../js/1.js"></script>
+            <div class="stylizedHr"></div>
+
+            <!-- footer -->
+            <p id="footer">Page created 6/10/2020 by student numer 20005308 &#169;</p>
+        </div>
+    </body>
+</html>

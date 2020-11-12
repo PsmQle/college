@@ -1,0 +1,42 @@
+/* created by student# 20005803, template version 2 (1/10) */
+
+* {margin:0; padding:0;}
+body {
+    background-color: #3478ed;
+}
+#container {
+    width:80%;
+    margin:80px 10%;
+    border:solid 1px black;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    background-color:#8fb8ff;                
+}
+h1 {
+    padding:30px;
+}
+.stylizedHr {
+    height:0px;
+    border:solid 2px #3478ed;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+#footer {
+    color:grey;
+}
+table {
+	margin:0 auto;
+}
+table * {
+	padding:5px;
+	text-align:center;
+}
+button {
+	line-height:100px;
+	width:100%;
+}
+.right {
+	text-align: right;
+}

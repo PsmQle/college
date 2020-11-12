@@ -1,0 +1,40 @@
+<html>
+<body><pre>look up planets in our solar system
+store all planet names in an array called planets
+look up distances of each planet from the sun
+store these in an an array called distance
+[0] = Earth for planets
+[0] = Earth distance from sun
+36 miles 150.6 = 151
+var i = 0;</pre>
+<style>
+p {
+	margin:5px;
+	padding:10px;
+	display:block;
+	border:solid 1px black;
+}
+</style>
+<!-- Real document starts here -->
+Please select which planet you want<br>
+<input type="range" id="points" name="points" min="1" max="8" value="1" oninput="updateThis(this.value)">
+<p id="jsOutput2">Selected: none</p><br>
+<div id="jsOutput"></div>
+<script type="text/javascript">
+	var planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+	var distances = [58, 108, 150, 228, 778, 1400, 2900, 4500];
+
+	function updateThis(val) {
+		document.getElementById("jsOutput2").innerHTML = "Selected:<br>Planet number: "+val+", name: <b>"+planets[val-1]+"</b>, distance from sun: "+distances[val-1]+" millions km.";
+	}
+	//initialization
+	updateThis(1);
+	
+	var i, str = '';
+	for (i=0; i<8; i++) {
+		str+="<p>Planet nr: "+(i+1)+", name: <b>"+planets[i]+"</b>, distance from sun: "+distances[i]+" millions km.</p>";
+	}
+	document.getElementById("jsOutput").innerHTML = str;
+</script>
+</body>
+</html>

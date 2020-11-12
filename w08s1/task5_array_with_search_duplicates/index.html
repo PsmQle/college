@@ -1,0 +1,107 @@
+<html>
+<body><pre>Following on from your Student first name list exercise, you have been tasked with the following:
+
+Manually add in some duplicate first names into the array that holds the list of the student first names.
+
+You can use the following list:
+
+['Andrew','Lili','Damon','Stephen','Brodie','Piotr','Drew','Bianca','Nathan','Andrew','Damon','Brodie','Andrew']
+
+Prompt the user to search for a name in the list and record the count occurrence for the amount of duplicates of that name, if
+any duplicates exist.
+If the name does not exist on the list let the user know. If it does exist print out the address(es) for the name(s)
+along with the amount of duplicates.
+Have a look at the example application in this sessions notes called 'Counting Occurrences Example.'
+Do a search for Andrew and see what happens, then search for John and notice the feedback given.</pre>
+<style>
+p {
+	margin:5px;
+	padding:10px;
+	display:block;
+	border:solid 1px black;
+}
+input {
+	margin:10px;
+}
+span {
+	font-weight:bold;
+}
+pre {
+	overflow:auto;
+}
+</style>
+<!-- Real document starts here -->
+Right now, it the classmates database we have <span id="total_class">xx</span> people.<br>
+Please input the name of classmate<br>
+<form id="inputs_form">
+	<input type="text" id="nr" name="nr" value="Piotr">
+	<input type="submit" onClick="updateThis(nr.value)" value="Search">
+</form>
+<p id="jsOutput2">Selected: none</p><br>
+<script type="text/javascript">
+	//Stopping form submit button from redirecting user
+	//Code by Overcode @ Stack Overflow
+	//https://stackoverflow.com/users/609001/overcode
+	var form = document.getElementById("inputs_form");
+	function handleForm(event) { event.preventDefault(); } 
+	form.addEventListener('submit', handleForm);
+	
+	
+
+	var classmates = ['Andrew','Lili','Damon','Stephen','Brodie','Piotr','Drew','Bianca','Nathan','Andrew','Damon','Brodie','Andrew'];
+
+	function updateThis(val) {
+		val+='';
+		var err = '';
+		
+		//checks if there is any numbers in input
+		var pattern = /[0-9]/g;
+		var found = val.match(pattern);		
+		if (found === null) {
+			//err+='No numbers, good to go';
+		} else {
+			err += 'People names should not have numbers in them.';
+		}
+		
+		//no errors, we can display res
+		if (err == '') {
+			str = "Looking for person called: <span>"+val+"</span>";
+			
+			var indexes = [];
+			for (i=0; i<=classmates.length; i++) {
+				if (classmates[i] == val) {
+					//console.log('there it is');
+					indexes.push(i);
+				}
+			}
+			
+			if (indexes.length == 0) {
+				str+='<br>There is no person with such a name in the database.';
+			} else {
+				var plural =[];
+				if (indexes.length == 1) {
+					plural.push('is');
+					plural.push('person');
+				} else {
+					plural.push('are');
+					plural.push('people');
+				}
+				str+='<br>There '+plural[0]+' '+indexes.length+' '+plural[1]+' with this name.';
+				for (j=0; j<indexes.length; j++) {
+					str+='<br>Person with this name is in database on index number <span>'+indexes[j]+'</span>, which is position numer <span>'+(indexes[j]+1)+'</span> in the array.';
+				}
+			}
+			
+			
+			document.getElementById("jsOutput2").innerHTML = str;
+		} else {
+			document.getElementById("jsOutput2").innerHTML = err;
+		}
+	}
+	//initialization
+	updateThis(document.getElementById("nr").value);
+	document.getElementById("total_class").innerHTML = classmates.length;
+
+</script>
+</body>
+</html>

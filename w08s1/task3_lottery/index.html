@@ -1,0 +1,136 @@
+<!-- Lottery number generator, made by student nr 20005308 -->
+<html>
+<body>
+	<style>
+		* {
+			margin:0;
+			padding:0;
+		}
+		p {
+			margin:10px;
+			padding:10px;
+			border:solid 1px black;
+			text-align:center;
+			border-radius:10px;
+			font-size:300%;
+		}
+		button {
+			padding:20px;
+			margin:40px;
+			font-size:60%;
+		}
+		#vpCont{
+			display:flex;
+			justify-content:center;
+		}
+		.viewport {
+			color:black;
+			display:block;
+			width:100px;
+			height:100px;
+			background-color:#5e97f2;
+			margin:50px;
+			overflow:hidden;
+			position:relative;
+		}
+		.number {
+			display:block;
+			width:100px;
+			height:50px;
+			font-size:50px;
+			line-height:50px;
+			padding-top:25px;
+			text-align:center;
+			transition:all 0.35s;
+			position:absolute;
+		}
+		.above {
+			top:-75px;
+		}
+		.middle {
+			top:0px;
+		}
+		.bottom {
+			top:100px;
+		}
+	</style>
+	<script>
+		class viewport {
+			roll(){
+				return Math.floor(Math.random() * 59);
+			}
+			constructor(id, howMany, actual){
+				this.id=id;
+				this.string='';
+				this.divs = [];
+				
+				for(var i=0; i<howMany; i++) {
+					this.addDiv(1, id, this.roll(), i);
+				}
+				this.addDiv(2, id, actual, this.divs.length);
+				for(var i=0; i<this.divs.length; i++){
+					this.string+=this.divs[i];
+				}
+			}
+
+			addDiv(type, parentId, number, id){
+				var str='<div id="'+parentId+id+'" class="number above">'+number+'</div>';
+				this.divs.push(str);
+			}
+
+			giveString(){
+				return this.string;
+			}
+		}
+
+		function setBottomClass(id){
+			document.getElementById(id).classList.add("bottom");
+			document.getElementById(id).classList.remove("above");
+		}
+		function setMiddleClass(id){
+			document.getElementById(id).classList.add("middle");
+			document.getElementById(id).classList.remove("above");
+		}
+		function start(){
+			//creating and populating array with unique numbers
+			var numbers=[];
+			while (numbers.length<6) {
+				var newNumber = Math.floor(Math.random() * 58)+1
+				if (!numbers.includes(newNumber)){
+					numbers.push(newNumber);
+				}
+			}
+			//sorting array
+			numbers.sort(function(a, b){return a - b});
+			
+			//displaying numbers
+			for (var i=0; i<numbers.length; i++) {
+				var vp = new viewport('vp'+i, 4+i, numbers[i]);
+				console.log(numbers[i]);
+				document.getElementById("v"+i).innerHTML = vp.giveString();
+					for (var j=0; j<vp.divs.length; j++) {
+					var Did = vp.id+j;
+					var timeToChange = 350+(350*j)
+					if (j==(vp.divs.length-1)){//last entry should use function setMiddleClass
+						setTimeout(setMiddleClass, timeToChange, Did)			
+					} else {
+						setTimeout(setBottomClass, timeToChange, Did)
+					}
+				}
+			}
+		}
+	</script>
+	<p>Lottery! Random number generator</p>
+	<p>
+		<button onClick="start()">Generate</button>
+	</p>
+	<div id="vpCont">
+		<div id="v0" class="viewport"></div>
+		<div id="v1" class="viewport"></div>
+		<div id="v2" class="viewport"></div>
+		<div id="v3" class="viewport"></div>
+		<div id="v4" class="viewport"></div>
+		<div id="v5" class="viewport"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<body>
+<p>Write loop program that allows you to enter 5 numbers and outputs average.</p>
+<script type="text/javascript">
+numbers = [];
+add = false;
+for (i = 1;   i < 6;   i++)
+{
+	str = 'Please enter numer #'+i;
+	if (add) {
+		str+=' Not a valid number, please try again.';
+		add=false;
+	}
+	newNumber = parseInt(prompt(str))
+	if (isNaN(newNumber)) {
+		//document.write("<br>Input #"+i+" is not a number. Try again");
+		i-=1;
+		add = true;
+	} else {
+		numbers.push(newNumber);
+	}
+}
+document.write("<br>The numbers:");
+tot = 0;
+for(n = 0; n < numbers.length; n++ ){
+    tot += parseInt(numbers[n], 10);
+	document.write("<br>" +numbers[n]);
+}
+
+//document.write("<br>tot: " + tot);
+//document.write("<br>numbers.lenght: " + numbers.length);
+
+av = parseInt(tot/numbers.length);
+//document.write("<br>Typeof: " + typeof av);
+document.write("<br>The average of those numbers is " + av);
+</script>
+</body>
+</html>

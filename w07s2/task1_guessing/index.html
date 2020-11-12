@@ -1,0 +1,57 @@
+<html>
+<body>
+<p><pre>Write a program where the program chooses a number between   1   and   10.
+
+A player is then prompted to enter a guess.   If the player guesses wrong,   then the prompt appears again until the guess is correct.
+
+When the player has made a successful guess the computer will issue a   "Well guessed!"   message,   and the program exits.
+
+A   conditional loop   may be used to repeat the guessing until the user is correct.
+
+Add counter to show how many guesses it took</pre></p>
+<style>
+button {
+	padding:20px;
+}
+</style>
+<script type="text/javascript">
+function compute() {
+	var guess_counter=0;
+	var number_to_be_guessed = 5;
+	//var number_to_be_guessed = Math.ceil(Math.random()*10);
+	//document.getElementById("jsOutput").innerHTML = number_to_be_guessed;
+	
+	str = "Please enter number between 1 and 10";
+	err = '';
+	hint = '';
+	
+	do {
+		answer = parseInt(prompt(str+err+hint+'\nThis is your '+guess_counter+' attempt'));
+		err =''//reset error message from previous iteration of loop
+		hint =''//reset hint message from previous iteration of loop
+		if (!isNaN(answer)) { //if answer is a number
+			if (answer>=1 && answer<=10) { //if 1>number>10
+				//thats valid guess, count this attempt and give a hint
+				guess_counter++;
+				if (answer>number_to_be_guessed) {
+					hint = '\nYour answer is too high';
+				} else {
+					hint = '\nYour answer is too low';
+				}
+			} else { //if number is not between 1 and 10
+				err='\nNumber have to be between 1 and 10.';
+			}
+		} else {//if answer is not number
+			err = '\nPlease input a number';
+		}
+	} while (number_to_be_guessed != answer)
+	document.getElementById("jsOutput").innerHTML = "Well guessed! You guessed the number <b>"+number_to_be_guessed+"</b> right at <b>"+guess_counter+"</b> attempt.";
+}
+
+</script><!-- Real document starts here -->
+	<table> <!-- Input form -->
+		<tr><td colspan="4"><button onClick="compute()">Start!</button></td></tr><!-- button for starting function drawInputs() -->
+	</table>
+	<p id="jsOutput"></p><!-- placeholder for outcome -->
+</body>
+</html>

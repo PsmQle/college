@@ -1,0 +1,39 @@
+<html>
+<head><title>Clock2</title>
+<style>
+body {
+background-color:#2da2eb;
+padding:100px;
+}
+.button {
+margin:40px;
+padding:30px;
+font-weight:bold;
+border-radius:4px;
+}
+.button:hover {
+filter: brightness(1.5);
+}
+#dateDisp {
+line-height:20px;
+}
+</style>
+</head>
+<body>
+    <h1>Clock</h1>
+    <button class = "button" onclick="displayDate()">Display time</button>
+    <p id="dateDisp">&nbsp;</p>
+    <h3>To play enter number and hit go </h3>
+    
+    <script src="c2.js">
+    </script>
+    <p>
+    <input type = "button"
+                    class = "button" 
+                    onclick="location.reload(true);" 
+                    value = "Play again" />
+    <!-- reload from server -->
+    </p>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<doctype html>
+<!-- Created on 1/10/20 by student nr 20005308, empty template version 2 updated on 01/10 -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Place for me to exercise what I have learned.">
+        <meta name="keywords" content="learn, allAboutMe">
+        <title>Website by 20005308</title>
+        <link rel="stylesheet" href="css/main.css"/>
+    </head>
+    <body>
+        <div id="container">
+            
+            <!-- header -->
+            <h1>Week 6 Session 1 Task 3</h1>
+            <div class="stylizedHr"></div>
+			<p>Freddos per hour calculator</p>
+            <div class="stylizedHr"></div>
+
+            <!-- JS output -->
+			<table>
+				<tr><td colspan="2">Freddos/hour in 1999</td><td>Freddos/hour calculator</td></tr>
+				<tr>
+					<td>Year</td>
+					<td><input id="y1999" value="1999" class="right" disabled></input></td>
+					<td><input id="year" value="2020"></input></td>
+				</tr>
+				<tr>
+					<td>Minimum wage</td>
+					<td><input id="min1999" value="3.60" class="right" disabled></input></td>
+					<td><input id="min" value="9"></input></td>
+				</tr>
+				<tr>
+					<td>Cost of Freddo</td>
+					<td><input id="cost1999" value="0.05" class="right" disabled></input></td>
+					<td><input id="cost" value="0.25"></input></td>
+				</tr>
+				<tr>
+					<td>Freddos per hour</td>
+					<td><input id="fph1999" value="" class="right" disabled></input></td>
+					<td><input id="fph" value=""></input></td>
+				</tr>
+				<tr><td colspan="3"><p id="jsOutput"></p></td>
+				<tr><td colspan="3"><button onClick="updateTable()">Calculate</button></td></tr>
+			</table>
+			
+			<script src="js/1.js"></script>
+			<div class="stylizedHr"></div>
+
+            <!-- footer -->
+            <p id="footer">Page created 6/10/2020 by student numer 20005308 &#169;</p>
+        </div>
+    </body>
+</html>

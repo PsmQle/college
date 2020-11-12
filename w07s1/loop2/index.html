@@ -1,0 +1,39 @@
+<html>
+<body>
+<p>JS multiplication table, with user-specified number and max multiplication.</p>
+<style>
+.outputTable td {
+border:solid 1px black;
+padding:10px;
+}
+</style>
+<script type="text/javascript">
+function drewTable() {
+	var nr = parseInt(document.getElementById("nr").value);
+	var hmt = parseInt(document.getElementById("hmt").value)+1;
+
+
+	str = '<table class="outputTable">';
+	for (i = 1;   i < hmt; i++) {
+	str += '<tr>';
+	str += '<td>'+nr+' x '+i+'=</td>';
+	str += '<td>'+parseInt(nr*i)+'</td>';
+	str += '</tr>';
+	}
+	str += '</table>';
+	
+	document.getElementById("jsOutput").innerHTML = str;
+}
+</script>
+	<table>
+		<tr>
+			<td>Numer to multiply:</td>
+			<td><input id="nr" value="1"></input></td>
+			<td>How many times?</td>
+			<td><input id="hmt" value="10"></input></td>
+		</tr>
+		<tr><td colspan="4"><button onClick="drewTable()">Prepare</button></td></tr>
+	</table>
+	<p id="jsOutput"></p>
+</body>
+</html>

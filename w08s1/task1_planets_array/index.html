@@ -1,0 +1,34 @@
+<html>
+<body>
+<p><pre>look up planets in our solar system
+store all planet names in an array called planets
+look up distances of each planet from the sun
+store these in an an array called distance
+[0] = Earth for planets
+[0] = Earth distance from sun
+36 miles 150.6 = 151
+var i = 0;
+The distance of Earth from the sun is 93 Million miles.Repeated for each planet and distance inside  loop write.document(text);</pre></p>
+<style>
+#jsOutput p {
+	margin:5px;
+	padding:10px;
+	display:block;
+	border:solid 1px black;
+}
+</style>
+<!-- Real document starts here -->
+<div id="jsOutput"></div>
+<script type="text/javascript">
+
+var planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+var distances = [58, 108, 150, 228, 778, 1400, 2900, 4500];
+var i, str = '';
+
+for (i=0; i<8; i++) {
+	str+="<p>Planet nr: "+(i+1)+", name: <b>"+planets[i]+"</b>, distance from sun: "+distances[i]+" millions km.</p>";
+}
+document.getElementById("jsOutput").innerHTML = str;
+</script>
+</body>
+</html>
